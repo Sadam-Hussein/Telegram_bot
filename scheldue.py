@@ -103,9 +103,10 @@ class ScheldueInit:
 
         
 
-    def find_by_cabinet(self) -> list:
+    def find_by_cabinet(self, cab:str = "") -> list:
         data = []
-        cab = input("Кабинет: ")
+        if cab == "":
+            cab = input("Кабинет: ")
         for user in sorted(self.clear_data_classes, key=lambda user: user.para):
             user:Scheldue = user
             if cab == str(user.cabinet):

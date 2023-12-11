@@ -13,11 +13,42 @@ bot = Bot(token=Token)
 dp = Dispatcher()
 
 
-@dp.message(Command("get"))
-async def handle_get():
-    scheldueInit = ScheldueInit('16.11.2023.xlsx', openpyxl)
+scheldueInit = ScheldueInit('16.11.2023.xlsx', openpyxl)
 
-    await scheldueInit.main()
+
+@dp.message(Command("get"))
+async def handle_get(message: types.Message):
+    
+    await message.answer(text="""
+    1. Кто оккупировал кабинет?
+    2. Какие у папы суриката пары?
+    3. Кто из папы сурикатов свободен?
+    4. Какие пары у группы сурикатов?
+    5. С кем поменяться ключами?
+    6. Какой кабинет свободен?
+    Действие:
+    """)
+
+
+@dp.message()
+async def handle_get(message: types.Message):
+    
+    result = "Я тебя не понял"
+
+    if message.text == "1":
+
+        result = "Введите номер кабинета:"
+        await message.answer(text=result)
+    
+    
+
+
+# @dp.message()
+# async def handle_get(message: types.Message):
+#     result = "Я тебя не понял"
+#     if message.text == "1":
+#         result = scheldueInit.find_by_cabinet(cabinet)
+#     await message.answer(text=str(result))
 
 
 @dp.message(CommandStart())
