@@ -70,7 +70,7 @@ class ScheldueInit:
             obj = Scheldue(lesson, teacher, cabinet, para, group)
             self.clear_data_classes.append(obj)
 
-    def main(self):
+    def list_main(self):
         repeat = True
         while repeat:
             main = str(input("""
@@ -114,9 +114,10 @@ class ScheldueInit:
                 #print(str(user))
         return data
 
-    def find_papa_surikat(self) -> list:
+    def find_papa_surikat(self, teacher:str = "") -> list:
         data = []
-        teacher = input("Папа сурикат: ")
+        if teacher == "":
+            teacher = input("Папа сурикат: ")
         for user in sorted(self.clear_data_classes, key=lambda user: user.para):
             user:Scheldue = user
             if teacher in user.teacher:
@@ -222,3 +223,7 @@ class ScheldueInit:
                     #print(f"{index}-{group_id} : {group_name}")
                     return group_name
             
+
+    # def get_data(self):
+    #     data = input('Введите номер кабинета:')
+    #     return data
